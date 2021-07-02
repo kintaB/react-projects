@@ -10,7 +10,7 @@ let store = {
         { message: "Pigga", id: "3", likeCount: "13" },
         { message: "Rigga", id: "4", likeCount: "24" },
       ],
-      newPostText: "Master Yoda",
+      newPostText: "Master12321 Yoda",
     },
     DialogsPage: {
       friends: [
