@@ -14,7 +14,7 @@ let store = {
     },
     DialogsPage: {
       friends: [
-        { name: "Gleb", id: "1" },
+        { name: "Alla", id: "1" },
         { name: "Dima", id: "2" },
         { name: "Vanya", id: "3" },
         { name: "Sergey", id: "4" },
