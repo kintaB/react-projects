@@ -1,0 +1,13 @@
+.dialog {
+  color: cornsilk;
+  text-decoration: none;
+}
+
+.dialogsItems .activeDialog {
+  color: gold;
+  text-decoration: none;
+}
+
+.dialogsItems {
+  color: thistle;
+}
