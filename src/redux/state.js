@@ -8,7 +8,7 @@ let store = {
         { message: "Nigga", id: "1", likeCount: "11" },
         { message: "Wigga", id: "2", likeCount: "12" },
         { message: "Pigga", id: "3", likeCount: "13" },
-        { message: "Rigga", id: "4", likeCount: "14" },
+        { message: "Rigga", id: "4", likeCount: "24" },
       ],
       newPostText: "Yasper Moglot",
     },
@@ -23,7 +23,7 @@ let store = {
       message: [
         { message: "Hello Nigger" },
         { message: "Hello Wigga" },
-        { message: "Vape Nic Suck Dick" },
+        { message: "Vape Nic Suck Dick!!!!!" },
         { message: "BIG DICK CLUUB!!" },
         { message: "SMASH!" },
       ],
