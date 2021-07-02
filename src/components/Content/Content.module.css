@@ -1,0 +1,20 @@
+.content {
+  grid-area: c;
+  background-color: #363c42;
+}
+
+.myPosts {
+  color: wheat;
+}
+
+.profileContentDescription {
+  color: #ff8066;
+}
+
+.newPostTitle {
+  color: whitesmoke;
+}
+
+.profileContentName {
+  color: azure;
+}
