@@ -27,7 +27,12 @@ function App(props) {
         <Route
           exact
           path="/dialogs"
-          render={() => <Dialogs state={props.state.DialogsPage} />}
+          render={() => (
+            <Dialogs
+              dispatch={props.dispatch}
+              state={props.state.DialogsPage}
+            />
+          )}
         />
         <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />

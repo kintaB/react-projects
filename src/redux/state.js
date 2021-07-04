@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
+const UPDATE_NEW_MESSSAGE_BODY = "UPDATE-NEW-MESSSAGE-BODY";
+const SEND_MESSSAGE = "SEND-MESSSAGE";
 
 let store = {
   _state: {
@@ -10,7 +12,7 @@ let store = {
         { message: "Pigga", id: "3", likeCount: "13" },
         { message: "Rigga", id: "4", likeCount: "24" },
       ],
-      newPostText: "Master12321dasdas Yoda",
+      newPostText: "Master Yoda",
     },
     DialogsPage: {
       friends: [
@@ -21,12 +23,13 @@ let store = {
         { name: "Scheff", id: "5" },
       ],
       message: [
-        { message: "Hello Nigger" },
-        { message: "Hello Wigga" },
-        { message: "Vape Nic Suck Dick!!!!!" },
-        { message: "BIG DICK CLUUB!!" },
-        { message: "SMASH!" },
+        { message: "Hello Nigger", id: "1" },
+        { message: "Hello Wigga", id: "2" },
+        { message: "Vape Nic Suck Dick!!!!!", id: "3" },
+        { message: "BIG DICK CLUUB!!", id: "4" },
+        { message: "SMASH!", id: "5" },
       ],
+      newMessageBody: "",
     },
   },
   _callSubscriber() {},
@@ -37,7 +40,7 @@ let store = {
   subscribe(observer) {
     this._callSubscriber = observer;
   },
-
+  //TODO: add function which update message array on UI side
   dispatch(action) {
     if (action.type === ADD_POST) {
       let postObj = {
@@ -52,6 +55,17 @@ let store = {
     } else if (action.type === UPDATE_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
       this._callSubscriber(this._state);
+    } else if (action.type === UPDATE_NEW_MESSSAGE_BODY) {
+      this._state.DialogsPage.newMessageBody = action.body;
+      this._callSubscriber(this._state);
+    } else if (action.type === SEND_MESSSAGE) {
+      let messageObject = {
+        id: action.object.id,
+        message: store._state.DialogsPage.newMessageBody,
+      };
+      this._state.DialogsPage.message.push(messageObject);
+      this._state.DialogsPage.newMessageBody = "";
+      this._callSubscriber(this._state);
     }
   },
 };
@@ -64,5 +78,12 @@ export let updatePostTextActionCreator = (text) => {
   return { type: UPDATE_POST_TEXT, newText: text };
 };
 
+export let sendMessageCreator = (object) => {
+  return { type: SEND_MESSSAGE, object: object };
+};
+
+export let updateNewMessageBodyCreator = (text) => {
+  return { type: UPDATE_NEW_MESSSAGE_BODY, body: text };
+};
 export default store;
 window.this = store;
