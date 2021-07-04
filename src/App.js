@@ -3,37 +3,20 @@ import React from "react";
 import Header from "./components/Header/Header";
 import Nav from "./components/Navbar/Nav";
 import Content from "./components/Content/Content";
-import Dialogs from "./components/Dialogs/Dialogs";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import { Route } from "react-router-dom";
 
-function App(props) {
+function App() {
   return (
     <div className="app-wrapper">
       <Header />
       <Nav />
       <div className="app-wrapper-content">
-        <Route
-          path="/profile"
-          render={() => (
-            <Content
-              dispatch={props.dispatch}
-              state={props.state.profilePage}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/dialogs"
-          render={() => (
-            <Dialogs
-              dispatch={props.dispatch}
-              state={props.state.dialogsPage}
-            />
-          )}
-        />
+        <Route path="/profile" render={() => <Content />} />
+        <Route exact path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/settings" render={() => <Settings />} />
