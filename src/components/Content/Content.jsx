@@ -2,15 +2,15 @@ import React from "react";
 import MainImage from "./second-rate-components/MainImage";
 import Profile from "./second-rate-components/Profile";
 import MainPosts from "./second-rate-components/Posts/MainPost";
-import NewPost from "./second-rate-components/NewPost";
 import cont from "./Content.module.css";
+import NewPostContainer from "./second-rate-components/NewPostContainer";
 
 const Content = (props) => {
   return (
     <div className={cont.content}>
       <MainImage />
       <Profile />
-      <NewPost
+      <NewPostContainer
         dispatch={props.dispatch}
         newPostText={props.state.newPostText}
       />

@@ -30,7 +30,7 @@ function App(props) {
           render={() => (
             <Dialogs
               dispatch={props.dispatch}
-              state={props.state.DialogsPage}
+              state={props.state.dialogsPage}
             />
           )}
         />

@@ -5,7 +5,7 @@ import Friends from "../Friends/Friends";
 import {
   sendMessageCreator,
   updateNewMessageBodyCreator,
-} from "../../redux/state";
+} from "../../redux/dialogsReducer";
 
 const Dialogs = (props) => {
   let newMessageBody = props.state.newMessageBody;
@@ -20,7 +20,6 @@ const Dialogs = (props) => {
       id: "32",
       message: e.target.value,
     };
-    console.log(messageObject);
     props.dispatch(sendMessageCreator(messageObject));
   };
   let onNewMessageChange = (event) => {
