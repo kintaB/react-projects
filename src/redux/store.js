@@ -40,7 +40,6 @@ let store = {
   subscribe(observer) {
     this._callSubscriber = observer;
   },
-  //TODO: add function which update message array on UI side
   dispatch(action) {
     this._state.profilePage = profileReducer(action, this._state.profilePage);
     this._state.dialogsPage = dialogsReducer(action, this._state.dialogsPage);

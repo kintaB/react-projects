@@ -1,41 +1,34 @@
-import React from "react";
+import { connect } from "react-redux";
 import NewPost from "./NewPost";
 import {
   updatePostTextActionCreator,
   addPostActionCreator,
 } from "../../../redux/profileReducer";
-import StoreContext from "../../../storeContext";
 
-const NewPostContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {(store) => {
-        let createPost = (e) => {
-          let text = e.target.value;
-          let newObjectPost = {
-            id: "43",
-            message: text,
-            likeCount: "21312",
-          };
-          let action = addPostActionCreator(newObjectPost);
-          store.dispatch(action);
-        };
-
-        let updatePostText = (e) => {
-          let text = e.target.value;
-          let action = updatePostTextActionCreator(text);
-          store.dispatch(action);
-        };
-        return (
-          <NewPost
-            updatePostText={updatePostText}
-            createPost={createPost}
-            newPostText={store.getState().profilePage.newPostText}
-          />
-        );
-      }}
-    </StoreContext.Consumer>
-  );
+let mapStateToProps = (state) => {
+  return { profilePage: state.profilePage };
 };
 
-export default NewPostContainer;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    createPost: (e) => {
+      let text = e.target.value;
+      let newObjectPost = {
+        id: "43",
+        message: text,
+        likeCount: "21312",
+      };
+      let action = addPostActionCreator(newObjectPost);
+      dispatch(action);
+    },
+    updatePostText: (e) => {
+      let text = e.target.value;
+      let action = updatePostTextActionCreator(text);
+      dispatch(action);
+    },
+  };
+};
+
+const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost);
+
+export default NewPostContainer; 

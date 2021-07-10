@@ -8,13 +8,14 @@ const Dialogs = (props) => {
   let friendsElements = props.dialogsPage.friends.map((f, index) => (
     <Friends key={index} name={f.name} id={f.id} />
   ));
-  let messageElements = props.dialogsPage.message.map((m, index) => (
+  let messageElements = props.dialogsPage.messages.map((m, index) => (
     <Message key={index} message={m.message} />
   ));
+
   return (
     <div className={s.mainDialogs}>
       <div className={s.friends}>{friendsElements}</div>
-      <div className={s.message}>
+      <div className={s.messages}>
         <div>{messageElements}</div>
         <div>
           <div>

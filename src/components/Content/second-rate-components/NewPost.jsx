@@ -11,7 +11,7 @@ const NewPost = (props) => {
             <textarea
               onChange={props.updatePostText}
               ref={props.newTextPost}
-              value={props.newPostText}
+              value={props.profilePage.newPostText}
             />
             <div className={cont.buttons}></div>
             <button onClick={props.createPost}>create</button>
