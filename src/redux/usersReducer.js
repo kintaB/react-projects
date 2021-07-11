@@ -1,46 +1,16 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
+const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
+const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
+const TOOGLE_IS_FETCHING = "TOOGLE_IS_FETCHING";
 
 let initialState = {
-  users: [
-    {
-      name: "Nigga",
-      userId: "1",
-      location: { country: "Russia", city: "Kras" },
-      profileImage:
-        "https://img1.freepng.ru/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg",
-      status: "i hate niggers",
-      follow: true,
-    },
-    {
-      name: "Nigga",
-      userId: "2",
-      location: { country: "Russia", city: "Ekt" },
-      profileImage:
-        "https://img1.freepng.ru/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg",
-      status: "апчихба",
-      follow: false,
-    },
-    {
-      name: "Nigga",
-      userId: "3",
-      location: { country: "Russia", city: "Moscow" },
-      profileImage:
-        "https://img1.freepng.ru/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg",
-      status: "обэме",
-      follow: false,
-    },
-    {
-      name: "Nigga",
-      userId: "4",
-      location: { country: "Russia", city: "Spb" },
-      profileImage:
-        "https://img1.freepng.ru/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg",
-      status: "почему так",
-      follow: true,
-    },
-  ],
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1,
+  isFetching: true,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -50,8 +20,8 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: [
           ...state.users.map((u) => {
-            if (u.userId === action.userId) {
-              return { ...u, follow: true };
+            if (u.id === action.userId) {
+              return { ...u, followed: true };
             }
             return u;
           }),
@@ -61,29 +31,47 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.userId === action.userId) {
-            return { ...u, follow: false };
+          if (u.id === action.userId) {
+            return { ...u, followed: false };
           }
           return u;
         }),
       };
     case SET_USERS:
-      return { ...state, user: [...state.users, action.users] };
+      return { ...state, users: action.users };
+    case SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.page };
+    case SET_TOTAL_COUNT:
+      return { ...state, totalUsersCount: action.totalCount };
+    case TOOGLE_IS_FETCHING:
+      return { ...state, isFetching: action.isFetching };
     default:
       return state;
   }
 };
 
-export let followAC = (userId) => {
+export let follow = (userId) => {
   return { type: FOLLOW, userId };
 };
 
-export let unfollowAC = (userId) => {
+export let unfollow = (userId) => {
   return { type: UNFOLLOW, userId };
 };
 
-export let setUsersAC = (users) => {
+export let setUsers = (users) => {
   return { type: SET_USERS, users };
+};
+
+export let setCurrentPage = (page) => {
+  return { type: SET_CURRENT_PAGE, page };
+};
+
+export let setTotalCount = (totalCount) => {
+  return { type: SET_TOTAL_COUNT, totalCount };
+};
+
+export let toogleisFetching = (isFetching) => {
+  return { type: TOOGLE_IS_FETCHING, isFetching };
 };
 
 export default usersReducer;
