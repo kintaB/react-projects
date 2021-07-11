@@ -5,11 +5,11 @@ import MainPosts from "./second-rate-components/Posts/MainPost";
 import cont from "./Content.module.css";
 import NewPostContainer from "./second-rate-components/NewPostContainer";
 
-const Content = () => {
+const Content = (props) => {
   return (
     <div className={cont.content}>
       <MainImage />
-      <Profile />
+      <Profile profile={props.profile} />
       <NewPostContainer />
       <MainPosts />
     </div>
