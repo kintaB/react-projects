@@ -18,3 +18,7 @@
 .profileContentName {
   color: azure;
 }
+
+.profileImage {
+  border-radius: 50px;
+}

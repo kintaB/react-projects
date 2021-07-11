@@ -19,30 +19,6 @@ let mapStateToProps = (state) => {
   };
 };
 
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     onClickFollow: (userId) => {
-//       dispatch(followAC(userId));
-//     },
-
-//     onClickUnfollow: (userId) => {
-//       dispatch(unfollowAC(userId));
-//     },
-//     setUsers: (users) => {
-//       dispatch(setUsersAC(users));
-//     },
-//     setCurrentPage: (page) => {
-//       dispatch(setCurrentPageAC(page));
-//     },
-//     setTotalCount: (totalCount) => {
-//       dispatch(setTotalCountAC(totalCount));
-//     },
-//     toogleIsFetching: (isFetching) => {
-//       dispatch(toogleisFetchingAC(isFetching));
-//     },
-//   };
-// };
-
 export default connect(mapStateToProps, {
   follow,
   unfollow,
