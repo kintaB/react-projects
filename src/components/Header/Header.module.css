@@ -3,5 +3,19 @@
   background-color: #0f1b38;
 }
 .header img {
-  width: 50px;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+}
+
+.loginBlock {
+  float: right;
+}
+
+.loginBlock a {
+  color: wheat;
+}
+
+.login {
+  color: wheat;
 }

@@ -4,7 +4,7 @@
   grid-template-areas:
     "h h"
     "n c";
-  width: 90%;
+  width: 70%;
 
   grid-template-rows: 60px 1fr;
   grid-template-columns: 1fr 10fr;

@@ -4,8 +4,7 @@ import Preloader from "../../command/preloader/preloader";
 import s from "../Content.module.css";
 
 const Profile = (props) => {
-  console.log(props);
-  if (props.profile === null) {
+  if (!props.profile) {
     return (
       <>
         <Preloader />
