@@ -1,33 +1,27 @@
 import React from "react";
-import * as axios from "axios";
 import * as s from "./User.module.css";
 import User from "./User";
 import Preloader from "../command/preloader/preloader";
+import usersAPI from "../../api/api";
 
 class Users extends React.Component {
   componentDidMount() {
     this.props.toogleisFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
       .then((response) => {
         this.props.toogleisFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalCount(response.data.totalCount);
+        this.props.setUsers(response.items);
+        this.props.setTotalCount(response.totalCount);
       });
   }
   onPageChanged(page) {
     this.props.toogleisFetching(true);
     this.props.setCurrentPage(page);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.toogleisFetching(false);
-        this.props.setUsers(response.data.items);
-      });
+    usersAPI.getUsers(page, this.props.pageSize).then((response) => {
+      this.props.toogleisFetching(false);
+      this.props.setUsers(response.items);
+    });
   }
   render() {
     let pagesCount = Math.ceil(
@@ -59,6 +53,8 @@ class Users extends React.Component {
           {this.props.users.map((u, index) => {
             return (
               <User
+                followingInProgress={this.props.followingInProgress}
+                toogleFollowingInProgress={this.props.toogleFollowingInProgress}
                 key={index}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}

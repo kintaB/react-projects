@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import * as s from "./User.module.css";
+import usersAPI from "../../api/api";
 
 const User = (props) => {
   return (
@@ -22,11 +23,38 @@ const User = (props) => {
             <div className={s.userName}>{props.users.name}</div>
             <div>
               {props.users.followed ? (
-                <button onClick={() => props.unfollow(props.users.id)}>
+                <button
+                  disabled={props.followingInProgress.some(
+                    (id) => id == props.users.id
+                  )}
+                  onClick={() => {
+                    props.toogleFollowingInProgress(true, props.users.id);
+                    usersAPI.setUnfollow(props.users.id).then((response) => {
+                      if (response.data.resultCode == 0) {
+                        props.unfollow(props.users.id);
+                      }
+                      props.toogleFollowingInProgress(false, props.users.id);
+                    });
+                  }}
+                >
                   Unfollow
                 </button>
               ) : (
-                <button onClick={() => props.follow(props.users.id)}>
+                <button
+                  disabled={props.followingInProgress.some(
+                    (id) => id == props.users.id
+                  )}
+                  onClick={() => {
+                    props.toogleFollowingInProgress(true, props.users.id);
+                    usersAPI.setFollow(props.users.id).then((response) => {
+                      if (response.data.resultCode == 0) {
+                        props.follow(props.users.id);
+                      }
+
+                      props.toogleFollowingInProgress(false, props.users.id);
+                    });
+                  }}
+                >
                   Follow
                 </button>
               )}
