@@ -28,6 +28,19 @@ const usersAPI = {
       `https://social-network.samuraijs.com/api/1.0/follow/${userId}`
     );
   },
+  authAccept() {
+    return instance.get(
+      "https://social-network.samuraijs.com/api/1.0/auth/me",
+      {
+        withCredentials: true,
+      }
+    );
+  },
+  getUserId(userId) {
+    return instance.get(
+      `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
+    );
+  },
 };
 
 export default usersAPI;

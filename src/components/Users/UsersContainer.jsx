@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import {
   unfollow,
   follow,
-  setUsers,
   setCurrentPage,
-  setTotalCount,
-  toogleisFetching,
-  toogleFollowingInProgress,
+  getUsers,
+  setUnfollow,
+  setFollow,
 } from "../../redux/usersReducer";
 
 let mapStateToProps = (state) => {
@@ -24,9 +23,8 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalCount,
-  toogleisFetching,
-  toogleFollowingInProgress,
+  getUsers,
+  setUnfollow,
+  setFollow,
 })(Users);

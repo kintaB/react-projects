@@ -2,26 +2,14 @@ import React from "react";
 import * as s from "./User.module.css";
 import User from "./User";
 import Preloader from "../command/preloader/preloader";
-import usersAPI from "../../api/api";
 
 class Users extends React.Component {
   componentDidMount() {
-    this.props.toogleisFetching(true);
-    usersAPI
-      .getUsers(this.props.currentPage, this.props.pageSize)
-      .then((response) => {
-        this.props.toogleisFetching(false);
-        this.props.setUsers(response.items);
-        this.props.setTotalCount(response.totalCount);
-      });
+    console.log(this.props.follow);
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged(page) {
-    this.props.toogleisFetching(true);
-    this.props.setCurrentPage(page);
-    usersAPI.getUsers(page, this.props.pageSize).then((response) => {
-      this.props.toogleisFetching(false);
-      this.props.setUsers(response.items);
-    });
+    this.props.getUsers(page, this.props.pageSize);
   }
   render() {
     let pagesCount = Math.ceil(
@@ -44,7 +32,7 @@ class Users extends React.Component {
                   this.onPageChanged(p);
                 }}
               >
-                {p + "   "}
+                {" | " + p + " | "}
               </span>
             );
           })}
@@ -59,6 +47,8 @@ class Users extends React.Component {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 users={u}
+                setUnfollow={this.props.setUnfollow}
+                setFollow={this.props.setFollow}
               />
             );
           })}

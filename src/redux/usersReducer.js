@@ -1,3 +1,4 @@
+import usersAPI from "../api/api";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
@@ -88,4 +89,38 @@ export let toogleFollowingInProgress = (followingInProgress, id) => {
   return { type: TOOGLE_IS_FOLLOWING, followingInProgress, id };
 };
 
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toogleisFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then((response) => {
+      dispatch(toogleisFetching(false));
+      dispatch(setUsers(response.items));
+      dispatch(setTotalCount(response.totalCount));
+    });
+  };
+};
+
+export const setUnfollow = (id) => {
+  return (dispatch) => {
+    dispatch(toogleFollowingInProgress(true, id));
+    usersAPI.setUnfollow(id).then((response) => {
+      if (response.data.resultCode == 0) {
+        dispatch(unfollow(id));
+      }
+      dispatch(toogleFollowingInProgress(false, id));
+    });
+  };
+};
+
+export const setFollow = (id) => {
+  return (dispatch) => {
+    dispatch(toogleFollowingInProgress(true, id));
+    usersAPI.setFollow(id).then((response) => {
+      if (response.data.resultCode == 0) {
+        dispatch(follow(id));
+      }
+      dispatch(toogleFollowingInProgress(false, id));
+    });
+  };
+};
 export default usersReducer;
