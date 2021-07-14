@@ -7,6 +7,7 @@ import {
   setCurrentPage,
   setTotalCount,
   toogleisFetching,
+  toogleFollowingInProgress,
 } from "../../redux/usersReducer";
 
 let mapStateToProps = (state) => {
@@ -16,6 +17,7 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   };
 };
 
@@ -26,4 +28,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalCount,
   toogleisFetching,
+  toogleFollowingInProgress,
 })(Users);
