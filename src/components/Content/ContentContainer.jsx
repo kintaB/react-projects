@@ -23,6 +23,7 @@ class ContentContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  isAuth: state.auth.isAuth,
 });
 
 let withUrlDataConteinerComponent = withRouter(ContentContainer);
