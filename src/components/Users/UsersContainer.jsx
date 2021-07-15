@@ -8,6 +8,8 @@ import {
   setUnfollow,
   setFollow,
 } from "../../redux/usersReducer";
+import { withAuthRedirect } from "../HOC/withAuthRedirect";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
   return {
@@ -21,11 +23,14 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  getUsers,
-  setUnfollow,
-  setFollow,
-})(Users);
+export default compose(
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    getUsers,
+    setUnfollow,
+    setFollow,
+  }),
+  withAuthRedirect
+)(Users);
