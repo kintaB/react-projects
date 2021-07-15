@@ -1,6 +1,5 @@
 import React from "react";
 import Content from "./Content";
-
 import { connect } from "react-redux";
 import { setUserProfile, getUserId } from "../../redux/profileReducer";
 import { withRouter } from "react-router-dom";
