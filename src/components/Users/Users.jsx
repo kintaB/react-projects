@@ -3,9 +3,10 @@ import * as s from "./User.module.css";
 import User from "./User";
 import Preloader from "../command/preloader/preloader";
 
+import { Redirect } from "react-router-dom";
+
 class Users extends React.Component {
   componentDidMount() {
-    console.log(this.props.follow);
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged(page) {
@@ -18,6 +19,9 @@ class Users extends React.Component {
     let pages = [];
     for (let i = 1; i <= pagesCount / 100; i++) {
       pages.push(i);
+    }
+    if (!this.props.isAuth) {
+      return <Redirect to="/login" />;
     }
     return (
       <>

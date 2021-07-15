@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import Message from "../Message/Message";
 import Friends from "../Friends/Friends";
+import { Redirect } from "react-router-dom";
 
 const Dialogs = (props) => {
   let newMessageBody = props.dialogsPage.newMessageBody;
@@ -11,6 +12,9 @@ const Dialogs = (props) => {
   let messageElements = props.dialogsPage.messages.map((m, index) => (
     <Message key={index} message={m.message} />
   ));
+  if (!props.isAuth) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div className={s.mainDialogs}>
