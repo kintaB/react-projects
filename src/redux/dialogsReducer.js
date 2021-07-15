@@ -27,7 +27,7 @@ const dialogsReducer = (state = initState, action) => {
         messages: [
           ...state.messages,
           {
-            id: action.object.id,
+            id: "12",
             message: state.newMessageBody,
           },
         ],
@@ -40,12 +40,12 @@ const dialogsReducer = (state = initState, action) => {
   }
 };
 
-export let sendMessageCreator = (object) => {
+export let sendMessage = (object) => {
   return { type: SEND_MESSSAGE, object: object };
 };
 
-export let updateNewMessageBodyCreator = (text) => {
-  return { type: UPDATE_NEW_MESSSAGE_BODY, body: text };
+export let onChangeMessage = (text) => {
+  return { type: UPDATE_NEW_MESSSAGE_BODY, body: text.target.value };
 };
 
 export default dialogsReducer;

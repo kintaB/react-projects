@@ -24,9 +24,9 @@ const profileReducer = (state = initialState, action) => {
         post: [
           ...state.post,
           {
-            id: action.object.id,
+            id: "123",
             message: state.newPostText,
-            likeCount: action.object.likeCount,
+            likeCount: "32",
           },
         ],
       };
@@ -47,12 +47,12 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 
-export let addPostActionCreator = (object) => {
+export let createPost = (object) => {
   return { type: ADD_POST, object: object };
 };
 
-export let updatePostTextActionCreator = (text) => {
-  return { type: UPDATE_POST_TEXT, newText: text };
+export let updatePostText = (text) => {
+  return { type: UPDATE_POST_TEXT, newText: text.target.value };
 };
 
 export let setUserProfile = (profile) => {
