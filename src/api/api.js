@@ -11,35 +11,37 @@ const instance = axios.create({
 const usersAPI = {
   getUsers(currentPage, pageSize) {
     return instance
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`
-      )
+      .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => response.data);
   },
 
   setUnfollow(userId) {
-    return instance.delete(
-      `https://social-network.samuraijs.com/api/1.0/follow/${userId}`
-    );
+    return instance.delete(`follow/${userId}`);
   },
 
   setFollow(userId) {
-    return instance.post(
-      `https://social-network.samuraijs.com/api/1.0/follow/${userId}`
-    );
+    return instance.post(`follow/${userId}`);
   },
   authAccept() {
-    return instance.get(
-      "https://social-network.samuraijs.com/api/1.0/auth/me",
-      {
-        withCredentials: true,
-      }
-    );
+    return instance.get("auth/me", {
+      withCredentials: true,
+    });
   },
   getUserId(userId) {
-    return instance.get(
-      `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-    );
+    console.warn("USE PROFILE API !!!!!!!!");
+    return profileAPI.getUserId(userId);
+  },
+};
+
+export const profileAPI = {
+  getUserId(userId) {
+    return instance.get(`profile/${userId}`);
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/${userId}`);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status/`, { status });
   },
 };
 

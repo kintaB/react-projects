@@ -4,16 +4,33 @@ import s from "../Content.module.css";
 class Status extends React.Component {
   state = {
     editMode: false,
+    status: this.props.status,
   };
-  activateEditMode() {
+  activateEditMode = () => {
     this.setState({
       editMode: true,
     });
-  }
-  deactivateEditMode() {
+  };
+  deactivateEditMode = () => {
     this.setState({
       editMode: false,
     });
+  };
+
+  onStatusChange = (e) => {
+    this.setState({
+      status: e.target.value,
+    });
+    this.props.updateUserStatus(this.state.status);
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status,
+      });
+    }
+    console.log("componentDidUpdate");
   }
 
   render() {
@@ -21,7 +38,7 @@ class Status extends React.Component {
       <div>
         {!this.state.editMode && (
           <div className={s.status}>
-            <span onDoubleClick={this.activateEditMode.bind(this)}>
+            <span onDoubleClick={this.activateEditMode}>
               {this.props.status}
             </span>
           </div>
@@ -29,8 +46,10 @@ class Status extends React.Component {
         {this.state.editMode && (
           <div className={s.status}>
             <input
-              onBlur={this.deactivateEditMode.bind(this)}
-              value={this.props.status}
+              onChange={this.onStatusChange}
+              autoFocus={true}
+              onBlur={this.deactivateEditMode}
+              value={this.state.status}
             />
           </div>
         )}
