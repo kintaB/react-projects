@@ -1,6 +1,7 @@
 import React from "react";
 import cont from "../../Content/Content.module.css";
 import Preloader from "../../command/preloader/preloader";
+import Status from "./Status";
 import s from "../Content.module.css";
 
 const Profile = (props) => {
@@ -20,6 +21,7 @@ const Profile = (props) => {
             <div className={cont.profileContentName}>
               {props.profile.fullName}
             </div>
+            <Status status={"Hello"} />
             <div className={cont.profileContentDescription}>
               <div>About Me: {props.profile.aboutMe} </div>
               <div>Facebook: {props.profile.contacts.facebook}</div>
