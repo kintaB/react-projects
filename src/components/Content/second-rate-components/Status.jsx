@@ -16,7 +16,6 @@ class Status extends React.Component {
       editMode: false,
     });
   };
-
   onStatusChange = (e) => {
     this.setState({
       status: e.target.value,
@@ -30,7 +29,6 @@ class Status extends React.Component {
         status: this.props.status,
       });
     }
-    console.log("componentDidUpdate");
   }
 
   render() {
