@@ -11,6 +11,18 @@ import {
 import { withAuthRedirect } from "../HOC/withAuthRedirect";
 import { compose } from "redux";
 
+// let mapStateToProps = (state) => {
+//   return {
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress,
+//     isAuth: state.auth.isAuth,
+//   };
+// };
+
 let mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
