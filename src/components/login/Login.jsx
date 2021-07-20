@@ -9,7 +9,7 @@ const LoginForm = (props) => {
       <form onSubmit={props.handleSubmit}>
         <div>
           <Field
-            placeholder="Login"
+            placeholder="Type your login"
             name={"login"}
             validate={[requiredField]}
             component={Input}
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
         </div>
         <div>
           <Field
-            placeholder="Password"
+            placeholder="Type your password"
             name={"password"}
             validate={[requiredField]}
             component={Input}
