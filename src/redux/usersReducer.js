@@ -92,6 +92,7 @@ export let toogleFollowingInProgress = (followingInProgress, id) => {
 export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(toogleisFetching(true));
+    dispatch(setCurrentPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then((response) => {
       dispatch(toogleisFetching(false));
       dispatch(setUsers(response.items));
