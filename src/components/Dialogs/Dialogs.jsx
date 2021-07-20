@@ -3,9 +3,12 @@ import s from "./Dialogs.module.css";
 import Message from "../Message/Message";
 import Friends from "../Friends/Friends";
 import { Redirect } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 
 const Dialogs = (props) => {
-  let newMessageBody = props.dialogsPage.newMessageBody;
+  let onSubmit = (formData) => {
+    props.sendMessage(formData.message);
+  };
   let friendsElements = props.dialogsPage.friends.map((f, index) => (
     <Friends key={index} name={f.name} id={f.id} />
   ));
@@ -21,21 +24,33 @@ const Dialogs = (props) => {
       <div className={s.friends}>{friendsElements}</div>
       <div className={s.messages}>
         <div>{messageElements}</div>
-        <div>
-          <div>
-            <textarea
-              onChange={props.onChangeMessage}
-              value={newMessageBody}
-              placeholder="Send your message"
-            ></textarea>
-          </div>
-          <div>
-            <button onClick={props.sendMessage}>SEND</button>
-          </div>
-        </div>
+        <ReduxSendMessageForm onSubmit={onSubmit} />
       </div>
     </div>
   );
 };
+
+const DialogsReduxForm = (props) => {
+  return (
+    <>
+      <form onSubmit={props.handleSubmit}>
+        <div>
+          <div>
+            <Field
+              component={"textarea"}
+              name={"message"}
+              placeholder="Send your message"
+            ></Field>
+          </div>
+          <div>
+            <button>SEND</button>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+};
+
+const ReduxSendMessageForm = reduxForm({ form: "dialog" })(DialogsReduxForm);
 
 export default Dialogs;
