@@ -19,3 +19,16 @@
 .login {
   color: wheat;
 }
+
+.logoutBtn {
+  color: antiquewhite;
+  background-color: #0f1b38;
+  border: none;
+  outline: none;
+}
+
+.logoutBtn:hover {
+  cursor: pointer;
+  background: rgb(201, 201, 201); /* Цвет фона под ссылкой */
+  color: #0f1b38; /* Цвет ссылки */
+}
