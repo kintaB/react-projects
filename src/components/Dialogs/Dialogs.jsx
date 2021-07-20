@@ -4,6 +4,13 @@ import Message from "../Message/Message";
 import Friends from "../Friends/Friends";
 import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import { Textarea } from "../command/formsControll/formsControll";
+import {
+  maxLengthCreator,
+  requiredField,
+} from "../../utils/validators/validators";
+
+const maxLength100 = maxLengthCreator(100);
 
 const Dialogs = (props) => {
   let onSubmit = (formData) => {
@@ -37,7 +44,8 @@ const DialogsReduxForm = (props) => {
         <div>
           <div>
             <Field
-              component={"textarea"}
+              component={Textarea}
+              validate={[requiredField, maxLength100]}
               name={"message"}
               placeholder="Send your message"
             ></Field>
