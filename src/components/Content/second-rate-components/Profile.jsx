@@ -1,8 +1,9 @@
 import React from "react";
 import cont from "../../Content/Content.module.css";
 import Preloader from "../../command/preloader/preloader";
-import Status from "./Status";
+// import Status from "./Status";
 import s from "../Content.module.css";
+import StatusWithHooks from "./StatusWithHooks";
 
 const Profile = (props) => {
   if (!props.profile) {
@@ -21,7 +22,7 @@ const Profile = (props) => {
             <div className={cont.profileContentName}>
               {props.profile.fullName}
             </div>
-            <Status
+            <StatusWithHooks
               updateUserStatus={props.updateUserStatus}
               status={props.status}
             />
