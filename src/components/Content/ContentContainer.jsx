@@ -17,11 +17,16 @@ class ContentContainer extends React.Component {
     if (!userId) {
       userId = 18250;
     }
-
     this.props.getUserId(userId);
     this.props.setUserStatus(userId);
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps != this.props || nextState != this.state;
+  }
+
   render() {
+    console.log("DDD");
     return (
       <>
         <Content
