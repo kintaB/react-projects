@@ -1,4 +1,4 @@
-const SEND_MESSSAGE = "SEND-MESSSAGE";
+const SEND_MESSAGE = "SEND-MESSAGE";
 
 let initState = {
   friends: [
@@ -19,8 +19,7 @@ let initState = {
 
 const dialogsReducer = (state = initState, action) => {
   switch (action.type) {
-    case SEND_MESSSAGE:
-      console.log(action);
+    case SEND_MESSAGE:
       return {
         ...state,
         messages: [
@@ -38,7 +37,7 @@ const dialogsReducer = (state = initState, action) => {
 };
 
 export let sendMessage = (message) => {
-  return { type: SEND_MESSSAGE, message };
+  return { type: SEND_MESSAGE, message };
 };
 
 export default dialogsReducer;

@@ -13,7 +13,6 @@ const NewPost = (props) => {
   let onSubmit = (values) => {
     props.createPost(values.newPost);
   };
-
   return (
     <>
       <div className={cont.newPost}>
